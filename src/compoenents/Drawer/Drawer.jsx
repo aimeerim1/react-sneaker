@@ -2,38 +2,35 @@ import './Drawer.scss'
 import remove from '../../assets/icons/remove.svg'
 import send from '../../assets/icons/send.svg'
 import sneaker from '../../assets/images/sneaker.jpg'
-const Drawer =()=>{
+
+const Drawer =({onClose,items=[]})=>{
     return(
         <div className="overlay">
           <div className="drawer">
-            <h2>Корзина  <img src={remove} alt="" /></h2>
-            <div className="cartItem">
-              <img className='sneaker' width={70} height={70} src={sneaker} alt="sneaker" />
+            <h2>Корзина  <img onClick={onClose} src={remove} alt="" /></h2>
+            
+           
+              <div className="items">
+              {items.map((obj)=>(
+              <div  className="cartItem">
+              <img className='sneaker' width={70} height={70} src={obj.img} alt="sneaker" />
               <div className='cartItemTitle'>
-                <p >Мужские Кроссовки Nike Air Max 270</p>
-                <b>12 999 руб.</b>
-              </div>
-              <img className='remove' src={remove} alt="" />
-            </div>
-            <div className="cartItem">
-              <img className='sneaker' width={70} height={70} src={sneaker} alt="sneaker" />
-              <div className='cartItemTitle'>
-                <p >Мужские Кроссовки Nike Air Max 270</p>
-                <b>12 999 руб.</b>
-              </div>
-              <img className='remove' src={remove} alt="" />
-            </div>
-            <div className="cartItem">
-              <img className='sneaker' width={70} height={70} src={sneaker} alt="sneaker" />
-              <div className='cartItemTitle'>
-                <p >Мужские Кроссовки Nike Air Max 270</p>
-                <b>12 999 руб.</b>
+                <p >{obj.title}</p>
+                <b>{obj.price} rub.</b>
               </div>
               <img className='remove' src={remove} alt="" />
             </div>
             
+            )
 
-            <div className="items"></div>
+            )}
+            </div>
+            
+             
+            
+            
+            
+            
             <div className='cartTotalBlock'>
             <ul >
               <li>
