@@ -5,9 +5,8 @@ import DB from './card.json'
 import addCart from '../../assets/icons/addCart.svg'
 import addFav from '../../assets/icons/addFav.svg'
 import { useState } from 'react'
-// import { useEffect } from 'react'
 
-const Card = ({onPlus}) =>{
+const Card = ({onPlus,searchValue}) =>{
 
     const  [isAdded,setIsAdded] =useState({});
     const onClickPlus = (id) =>{
@@ -20,32 +19,33 @@ const Card = ({onPlus}) =>{
         [id]: !prevState[id]
     }));
     }}
-    // console.log(isAdded)
 
     function onClickPFavorite() {
     console.log('add Favorite')
   }
-
+//   const filteredItems = DB.filter(item =>
+//     item.title.toLowerCase().includes(searchValue.toLowerCase())
+// );
     return (
         <div className='cards'>
-          {DB.map((item,index)=>(
-            <div key={index} className="card">
-                  <div className="favorite">
-                  <img onClick={onClickPFavorite} src={fav} alt="fav" /></div>
-                  <img width={133} height={112} src={item.img} alt="" />
-                  <h5>{item.title}</h5>
-                  <div className='cardContent'>
-                    <div className='price'>
-                      <span>
-                        Цена:
-                      </span>
-                      <b>{item.price}rub.</b>
+         {DB.map((item, index) => (
+                <div key={index} className="card">
+                    <div className="favorite">
+                        <img onClick={onClickPFavorite} src={fav} alt="fav" />
                     </div>
-                   <img onClick={() => onClickPlus(item.id)} className='button' width={11} height={11} src={isAdded[item.id] ? addCart : plus} alt="" />
-                  </div>
-                </div> 
-                
-          ))}
+                    <img width={133} height={112} src={item.img} alt="" />
+                    <h5>{item.title}</h5>
+                    <div className='cardContent'>
+                        <div className='price'>
+                            <span>
+                                Цена:
+                            </span>
+                            <b>{item.price}rub.</b>
+                        </div>
+                        <img onClick={() => onClickPlus(item.id)} className='button' width={11} height={11} src={isAdded[item.id] ? addCart : plus} alt="" />
+                    </div>
+                </div>
+            ))}
                  
                 
               </div> 
